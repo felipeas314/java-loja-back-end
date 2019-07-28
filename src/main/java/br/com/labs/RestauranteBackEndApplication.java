@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MetallicaBackEndApplication {
+public class RestauranteBackEndApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MetallicaBackEndApplication.class, args);
+		SpringApplication.run(RestauranteBackEndApplication.class, args);
 	}
 
 }

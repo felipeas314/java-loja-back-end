@@ -3,6 +3,9 @@ package br.com.labs.product;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import br.com.labs.category.Category;
@@ -11,6 +14,8 @@ import br.com.labs.restaurant.Restaurant;
 @Entity
 public class Product {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String name;
