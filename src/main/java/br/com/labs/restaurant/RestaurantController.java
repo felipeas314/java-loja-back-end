@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import br.com.labs.category.Category;
 
 @RestController
 @RequestMapping("/restaurant")
@@ -54,13 +53,22 @@ public class RestaurantController {
 	public ResponseEntity<Restaurant> update(@Valid @RequestBody Restaurant restaurant,
 			@PathVariable("id") Integer id) {
 		return restaurantRepository.findById(id).map(r -> {
-			
+
 			r.setName(restaurant.getName());
 			r.setDescription(restaurant.getDescription());
-			
+
 			restaurantRepository.save(r);
-			
+
 			return ResponseEntity.ok().body(r);
 		}).orElse(ResponseEntity.notFound().build());
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> destroy(@PathVariable("id") Integer id) {
+		return restaurantRepository.findById(id)
+				.map(restaurant -> {
+					restaurantRepository.deleteById(id);
+					return ResponseEntity.ok().build();
+				}).orElse(ResponseEntity.notFound().build());
 	}
 }
