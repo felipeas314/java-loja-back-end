@@ -67,7 +67,7 @@ public class RestaurantController {
 	public ResponseEntity<?> destroy(@PathVariable("id") Integer id) {
 		return restaurantRepository.findById(id)
 				.map(restaurant -> {
-					restaurantRepository.deleteById(id);
+					restaurantRepository.delete(restaurant);
 					return ResponseEntity.ok().build();
 				}).orElse(ResponseEntity.notFound().build());
 	}
