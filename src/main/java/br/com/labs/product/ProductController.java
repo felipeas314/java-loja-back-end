@@ -57,7 +57,7 @@ public class ProductController {
 			p.setName(product.getName());
 			p.setCategory(product.getCategory());
 			p.setDescription(product.getDescription());
-			p.setRestaurant(p.getRestaurant());
+//			p.setStore(product.getStore());
 			p.setPrice(product.getPrice());
 
 			productRepository.save(p);
@@ -65,9 +65,9 @@ public class ProductController {
 			return ResponseEntity.ok(p);
 		}).orElse(ResponseEntity.notFound().build());
 	}
-	
+
 	@DeleteMapping
-	public ResponseEntity<?> delete(@PathVariable("id") Integer id){
+	public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
 		return productRepository.findById(id).map(product -> {
 			productRepository.delete(product);
 			return ResponseEntity.ok().build();

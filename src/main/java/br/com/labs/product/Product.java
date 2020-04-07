@@ -28,7 +28,7 @@ public class Product {
 	private Category category;
 
 	@ManyToOne
-	private Store restaurant;
+	private Store store;
 
 	public Integer getId() {
 		return id;
@@ -70,12 +70,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public Store getRestaurant() {
-		return restaurant;
+	public Store getStore() {
+		return store;
 	}
 
-	public void setRestaurant(Store restaurant) {
-		this.restaurant = restaurant;
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 }
