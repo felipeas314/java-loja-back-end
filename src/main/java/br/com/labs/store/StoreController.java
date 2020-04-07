@@ -1,4 +1,4 @@
-package br.com.labs.restaurant;
+package br.com.labs.store;
 
 import java.net.URI;
 
@@ -20,16 +20,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/restaurant")
-public class RestaurantController {
+public class StoreController {
 
-	private RestaurantRepository restaurantRepository;
+	private StoreRepository restaurantRepository;
 
-	public RestaurantController(RestaurantRepository repository) {
+	public StoreController(StoreRepository repository) {
 		this.restaurantRepository = repository;
 	}
 
 	@PostMapping
-	public ResponseEntity<Restaurant> create(@Valid @RequestBody Restaurant restaurant) {
+	public ResponseEntity<Store> create(@Valid @RequestBody Store restaurant) {
 		restaurantRepository.save(restaurant);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(restaurant.getId())
@@ -39,18 +39,18 @@ public class RestaurantController {
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<Restaurant>> index(@PageableDefault(page = 0, size = 10) Pageable pageable) {
+	public ResponseEntity<Page<Store>> index(@PageableDefault(page = 0, size = 10) Pageable pageable) {
 		return ResponseEntity.ok(restaurantRepository.findAll(pageable));
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Restaurant> show(@PathVariable("id") Integer id) {
+	public ResponseEntity<Store> show(@PathVariable("id") Integer id) {
 		return restaurantRepository.findById(id).map(restaurant -> ResponseEntity.ok().body(restaurant))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Restaurant> update(@Valid @RequestBody Restaurant restaurant,
+	public ResponseEntity<Store> update(@Valid @RequestBody Store restaurant,
 			@PathVariable("id") Integer id) {
 		return restaurantRepository.findById(id).map(r -> {
 

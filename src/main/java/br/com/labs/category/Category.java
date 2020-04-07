@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.lang.NonNull;
 
-import br.com.labs.restaurant.Restaurant;
+import br.com.labs.store.Store;
 
 @Entity
 public class Category {
@@ -25,7 +25,7 @@ public class Category {
 	private String description;
 
 	@ManyToOne
-	private Restaurant restaurant;
+	private Store restaurant;
 
 	public Integer getId() {
 		return id;
@@ -51,11 +51,11 @@ public class Category {
 		this.description = description;
 	}
 
-	public Restaurant getRestaurant() {
+	public Store getRestaurant() {
 		return restaurant;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
+	public void setRestaurant(Store restaurant) {
 		this.restaurant = restaurant;
 	}
 

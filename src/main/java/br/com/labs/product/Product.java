@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import br.com.labs.category.Category;
-import br.com.labs.restaurant.Restaurant;
+import br.com.labs.store.Store;
 
 @Entity
 public class Product {
@@ -28,7 +28,7 @@ public class Product {
 	private Category category;
 
 	@ManyToOne
-	private Restaurant restaurant;
+	private Store restaurant;
 
 	public Integer getId() {
 		return id;
@@ -70,11 +70,11 @@ public class Product {
 		this.category = category;
 	}
 
-	public Restaurant getRestaurant() {
+	public Store getRestaurant() {
 		return restaurant;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
+	public void setRestaurant(Store restaurant) {
 		this.restaurant = restaurant;
 	}
 

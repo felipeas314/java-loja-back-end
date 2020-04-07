@@ -1,4 +1,4 @@
-package br.com.labs.restaurant;
+package br.com.labs.store;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.lang.NonNull;
 
 @Entity
-public class Restaurant {
+public class Store {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
