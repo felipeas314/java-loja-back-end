@@ -19,7 +19,7 @@ public class Category {
 	private Integer id;
 
 	@NonNull
-	@NotBlank
+	@NotBlank(message="${name.notempty}")
 	private String name;
 
 	private String description;
