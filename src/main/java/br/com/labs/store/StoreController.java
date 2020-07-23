@@ -22,52 +22,52 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/restaurant")
 public class StoreController {
 
-	private StoreRepository restaurantRepository;
+	private StoreRepository storeRepository;
 
 	public StoreController(StoreRepository repository) {
-		this.restaurantRepository = repository;
+		this.storeRepository = repository;
 	}
 
 	@PostMapping
-	public ResponseEntity<Store> create(@Valid @RequestBody Store restaurant) {
-		restaurantRepository.save(restaurant);
+	public ResponseEntity<Store> create(@Valid @RequestBody Store store) {
+		storeRepository.save(store);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(restaurant.getId())
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(store.getId())
 				.toUri();
 
-		return ResponseEntity.created(location).body(restaurant);
+		return ResponseEntity.created(location).body(store);
 	}
 
 	@GetMapping
 	public ResponseEntity<Page<Store>> index(@PageableDefault(page = 0, size = 10) Pageable pageable) {
-		return ResponseEntity.ok(restaurantRepository.findAll(pageable));
+		return ResponseEntity.ok(storeRepository.findAll(pageable));
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Store> show(@PathVariable("id") Integer id) {
-		return restaurantRepository.findById(id).map(restaurant -> ResponseEntity.ok().body(restaurant))
+		return storeRepository.findById(id).map(store -> ResponseEntity.ok().body(store))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Store> update(@Valid @RequestBody Store restaurant,
+	public ResponseEntity<Store> update(@Valid @RequestBody Store store,
 			@PathVariable("id") Integer id) {
-		return restaurantRepository.findById(id).map(r -> {
+		return storeRepository.findById(id).map(s -> {
 
-			r.setName(restaurant.getName());
-			r.setDescription(restaurant.getDescription());
+			s.setName(store.getName());
+			s.setDescription(store.getDescription());
 
-			restaurantRepository.save(r);
+			storeRepository.save(s);
 
-			return ResponseEntity.ok().body(r);
+			return ResponseEntity.ok().body(s);
 		}).orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> destroy(@PathVariable("id") Integer id) {
-		return restaurantRepository.findById(id)
-				.map(restaurant -> {
-					restaurantRepository.delete(restaurant);
+		return storeRepository.findById(id)
+				.map(store -> {
+					storeRepository.delete(store);
 					return ResponseEntity.ok().build();
 				}).orElse(ResponseEntity.notFound().build());
 	}

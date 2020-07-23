@@ -11,6 +11,8 @@ spring:
     mongodb:
       database: loja
       host: 172.17.0.2
+  main:
+    lazy-initialization: true
 
 server:
   servlet:
