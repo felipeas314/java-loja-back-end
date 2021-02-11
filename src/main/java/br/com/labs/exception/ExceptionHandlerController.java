@@ -1,4 +1,4 @@
-package br.com.labs.Exception;
+package br.com.labs.exception;
 
 import java.time.LocalDate;
 import java.util.LinkedHashMap;

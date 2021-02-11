@@ -1,6 +1,6 @@
 package br.com.labs.auth;
 
-public class AuthDTO {
+public class LoginDTO {
 
 	private String email;
 
